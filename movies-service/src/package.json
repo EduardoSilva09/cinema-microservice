@@ -1,0 +1,24 @@
+{
+  "name": "movies-service",
+  "version": "1.0.0",
+  "description": "Provide movies info.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "javaScript",
+    "mongo",
+    "micro",
+    "services"
+  ],
+  "author": "EduardoSilva09",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0"
+  }
+}
