@@ -10,3 +10,9 @@ test('Diconnection Database', async () => {
     const isDisconnected = await database.disconnect()
     expect(isDisconnected).toBeTruthy()
 })
+
+test('Diconnection Database 2x', async () => {
+    await database.disconnect()
+    const isDisconnected = await database.disconnect()
+    expect(isDisconnected).toBeTruthy()
+})
