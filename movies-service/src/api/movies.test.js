@@ -13,21 +13,27 @@ afterAll(async () => {
     await server.stop()
 })
 
-test('GET /movies', async () => {
+test('GET /movies 200 Ok', async () => {
     const response = await request(app).get('/movies')
     expect(response.status).toEqual(200)
     expect(Array.isArray(response.body)).toBeTruthy()
     expect(response.body.length).toBeTruthy()
 })
 
-test('GET /movies/:id', async () => {
+test('GET /movies/:id 200 Ok', async () => {
     const testMovieId = '1';
     const response = await request(app).get(`/movies/${testMovieId}`)
     expect(response.status).toEqual(200)
     expect(response.body).toBeTruthy()
 })
 
-test('GET /movies/premieres', async () => {
+test('GET /movies/:id 404 NOT FOUND', async () => {
+    const testMovieId = '-1';
+    const response = await request(app).get(`/movies/${testMovieId}`)
+    expect(response.status).toEqual(404)
+})
+
+test('GET /movies/premieres 200 Ok', async () => {
     const response = await request(app).get('/movies/premieres')
     expect(response.status).toEqual(200)
     expect(Array.isArray(response.body)).toBeTruthy()

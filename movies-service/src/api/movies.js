@@ -1,6 +1,6 @@
 module.exports = (app, repository) => {
 
-    app.get('/movies/premieres ', async (req, res, next) => {
+    app.get('/movies/premieres', async (req, res, next) => {
         const movies = await repository.getMoviesPremieres()        
         res.json(movies)
     })
