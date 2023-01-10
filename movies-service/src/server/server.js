@@ -22,6 +22,7 @@ async function start() {
     server = app.listen(process.env.PORT, () => {
         console.log(`The service ${process.env.MS_NAME} already started at ${process.env.PORT}`);
     })
+    return server
 }
 
 async function stop() {
