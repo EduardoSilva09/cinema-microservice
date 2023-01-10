@@ -3,16 +3,18 @@ const morgan = require('morgan')
 const helmet = require('helmet')
 let server = null
 
-async function start() {
+async function start(api, repository) {
     const app = express()
 
-    
+
     app.use(helmet())
     app.use(morgan('dev'))
-    
+
     app.get('/health', (req, res) => {
         res.send(`The service ${process.env.MS_NAME} is running at ${process.env.PORT}`)
     })
+
+    api(app, repository)
 
     app.use((error, req, res, next) => {
         console.error(error);
