@@ -2,10 +2,14 @@ const { test, expect, beforeAll } = require('@jest/globals')
 const repository = require('./repository')
 
 let cityId = null
+let cinemaId = null
 
 beforeAll(async () => {
     const cities = await repository.getAllCities()
-    cityId = cities[0]._id
+    cityId = cities[cities.length - 1]._id
+
+    const cinemas = await repository.getCinemasByCiyId(cityId)
+    cinemaId = cinemas[cities.length - 1]._id
 })
 
 test('getAllCities', async () => {
@@ -15,7 +19,14 @@ test('getAllCities', async () => {
 })
 
 test('getCinemasByCiyId', async () => {
-    const city = await repository.getCinemasByCiyId(cityId)
-    expect(city).toBeTruthy()
-    expect(Array.isArray(city.cinemas)).toBeTruthy()
+    const cinemas = await repository.getCinemasByCiyId(cityId)
+    expect(cinemas).toBeTruthy()
+    expect(Array.isArray(cinemas)).toBeTruthy()
+})
+
+test('getMoviesByCinemaId', async () => {
+    const movies = await repository.getMoviesByCinemaId(cinemaId)
+    console.log(movies);
+    expect(movies.length).toBeTruthy()
+    expect(Array.isArray(movies)).toBeTruthy()
 })
