@@ -3,13 +3,16 @@ const repository = require('./repository')
 
 let cityId = null
 let cinemaId = null
+let movieId = null
 
 beforeAll(async () => {
     const cities = await repository.getAllCities()
-    cityId = cities[cities.length - 1]._id
+    const lastCity = cities.length - 1
+    cityId = cities[lastCity]._id
 
     const cinemas = await repository.getCinemasByCiyId(cityId)
-    cinemaId = cinemas[cities.length - 1]._id
+    cinemaId = cinemas[lastCity]._id
+    movieId = cinemas[lastCity].salas[0].sessoes[0].idFilme
 })
 
 test('getAllCities', async () => {
@@ -34,4 +37,10 @@ test('getMoviesByCityId', async () => {
     const movies = await repository.getMoviesByCityId(cityId)
     expect(Array.isArray(movies)).toBeTruthy()
     expect(movies.length).toBeTruthy()
+})
+
+test('getMovieSessionByCityId', async () => {
+    const movieSession = await repository.getMovieSessionByCityId(movieId, cityId)
+    expect(Array.isArray(movieSession)).toBeTruthy()
+    expect(movieSession.length).toBeTruthy()
 })
