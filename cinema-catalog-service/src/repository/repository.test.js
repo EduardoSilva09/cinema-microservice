@@ -21,8 +21,8 @@ test('getAllCities', async () => {
     expect(cities.length).toBeTruthy()
 })
 
-test('getCinemasByCiyId', async () => {
-    const cinemas = await repository.getCinemasByCiyId(cityId)
+test('getCinemasByCityId', async () => {
+    const cinemas = await repository.getCinemasByCityId(cityId)
     expect(cinemas).toBeTruthy()
     expect(Array.isArray(cinemas)).toBeTruthy()
 })

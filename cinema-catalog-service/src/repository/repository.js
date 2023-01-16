@@ -9,7 +9,7 @@ async function getAllCities() {
         .toArray()
 }
 
-async function getCinemasByCiyId(cityId) {
+async function getCinemasByCityId(cityId) {
     const objCityId = new ObjectId(cityId)
     const db = await database.connect()
     const city = await db.collection('catalog')
@@ -133,7 +133,7 @@ async function getMovieSessionByCinemaId(movieId, cinemaId) {
 
 module.exports = {
     getAllCities,
-    getCinemasByCiyId,
+    getCinemasByCityId,
     getMoviesByCinemaId,
     getMoviesByCityId,
     getMovieSessionByCityId,
