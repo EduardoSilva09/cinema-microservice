@@ -1,7 +1,7 @@
 module.exports = (app, repository) => {
 
     app.get('/cinemas/:cinema/movies/:movie', async (req, res, next) => {
-        const cityId = req.params.city
+        const movieId = req.params.movie
         const cinemaId = req.params.cinema
         const movieSession = await repository.getMovieSessionByCinemaId(movieId, cinemaId)
         if (!movieSession) return res.sendStatus(404)
