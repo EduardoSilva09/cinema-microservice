@@ -10,7 +10,7 @@ beforeAll(async () => {
     const lastCity = cities.length - 1
     cityId = cities[lastCity]._id
 
-    const cinemas = await repository.getCinemasByCiyId(cityId)
+    const cinemas = await repository.getCinemasByCityId(cityId)
     cinemaId = cinemas[lastCity]._id
     movieId = cinemas[lastCity].salas[0].sessoes[0].idFilme
 })
