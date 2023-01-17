@@ -251,17 +251,17 @@ function getAllCities() {
 }
 
 function getCinemasByCityId(cityId) {
-    if (cityId < 0) return []
+    if (cityId < 0) return null
     const lastInsert = catalog.length - 1
     const cinemas = catalog[lastInsert].cinemas
     return cinemas
 }
 
 function getMoviesByCinemaId(cinemaId) {
-    if (cinemaId < 0) return []
+    if (cinemaId < 0) return null
     const lastInsert = catalog.length - 1
-    const cinemas = catalog[lastInsert].cinemas
-    cinemas.map(cinema => {
+    const cinemas = catalog[lastInsert].cinemas    
+    return cinemas.map(cinema => {
         return {
             titulo: cinema.salas[0].sessoes[0].filme,
             _id: cinema.salas[0].sessoes[0].idFilme
@@ -274,10 +274,10 @@ function getMoviesByCityId(cityId) {
 }
 
 function getMovieSessionByCityId(movieId, cityId) {
-    if (cityId < 0 || movieId < 0) return []
+    if (cityId < 0 || movieId < 0) return null
     const lastInsert = catalog.length - 1
     const cinemas = catalog[lastInsert].cinemas
-    cinemas.map(cinema => {
+    return cinemas.map(cinema => {
         return {
             titulo: cinema.salas[0].sessoes[0].filme,
             _id: cinema.salas[0].sessoes[0].idFilme,
