@@ -16,6 +16,15 @@ module.exports = (app, repository) => {
 
         res.json(movies)
     })
+    
+    app.get('/cities/:city/movies/:movie', async (req, res, next) => {
+        const cityId = req.params.city
+        const movieId = req.params.movie
+        const movieSession = await repository.getMovieSessionByCityId(movieId, cityId)
+        if (!movieSession) return res.sendStatus(404)
+        
+        res.json(movieSession)
+    })
 
     app.get('/cities/:city/cinemas', async (req, res, next) => {
         const cityId = req.params.city
@@ -23,15 +32,6 @@ module.exports = (app, repository) => {
         if (!cinemas) return res.sendStatus(404)
 
         res.json(cinemas)
-    })
-
-    app.get('/cities/:city/movies/:movie', async (req, res, next) => {
-        const cityId = req.params.city
-        const movieId = req.params.movie
-        const movieSession = await repository.getMovieSessionByCityId(movieId, cityId)
-        if (!movieSession) return res.sendStatus(404)
-
-        res.json(movieSession)
     })
 
     app.get('/cities/:city/movies', async (req, res, next) => {
