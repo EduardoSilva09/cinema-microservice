@@ -35,11 +35,18 @@ test('addMovie', async () => {
     const movie = {
         titulo: 'Teste Movie',
         sinopse: 'Movie summary',
-        duracao: 120, 
-        dataLancamento: new Date(), 
-        imagem: 'image.jpg', 
-        categorias:['Aventura']
+        duracao: 120,
+        dataLancamento: new Date(),
+        imagem: 'image.jpg',
+        categorias: ['Aventura']
     }
-    const result = await repository.addMovie(movie)
-    expect(result).toBeTruthy()    
+
+    let result;
+    try {
+        result = await repository.addMovie(movie)
+        expect(result).toBeTruthy()
+    } finally {
+        if (result)
+            await repository.deleteMovie(result._id)
+    }
 })

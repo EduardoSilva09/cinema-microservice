@@ -27,6 +27,9 @@ async function addMovie(movie) {
     return movie
 }
 
+async function deleteMovie(id) {
+    const db = await database.connect()
+    return db.collection('movies').deleteOne({ _id: new ObjectId(id) })
+}
 
-
-module.exports = { getAllMovies, getMovieById, getMoviesPremieres, addMovie }
+module.exports = { getAllMovies, getMovieById, getMoviesPremieres, addMovie, deleteMovie }
