@@ -39,3 +39,22 @@ test('GET /movies/premieres 200 Ok', async () => {
     expect(Array.isArray(response.body)).toBeTruthy()
     expect(response.body.length).toBeTruthy()
 })
+
+test('GET /movies/premieres 200 Ok', async () => {
+    const movie = {
+        titulo: 'Teste Movie',
+        sinopse: 'Movie summary',
+        duracao: 120, 
+        dataLancamento: new Date(), 
+        imagem: 'image.jpg', 
+        categorias:['Aventura']
+    }
+
+    const response = await request(app)
+        .post('/movies/')
+        .set('Content-Type','application/json')
+        .send(movie)
+
+    expect(response.status).toEqual(201)
+    expect(response.body.length).toBeTruthy()
+})
