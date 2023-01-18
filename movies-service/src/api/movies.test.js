@@ -40,7 +40,7 @@ test('GET /movies/premieres 200 Ok', async () => {
     expect(response.body.length).toBeTruthy()
 })
 
-test('GET /movies/premieres 200 Ok', async () => {
+test('POST /movies/ 200 Ok', async () => {
     const movie = {
         titulo: 'Teste Movie',
         sinopse: 'Movie summary',
