@@ -40,7 +40,7 @@ test('GET /movies/premieres 200 Ok', async () => {
     expect(response.body.length).toBeTruthy()
 })
 
-test('POST /movies/ 200 Ok', async () => {
+test('POST /movies/ 201 CREATED', async () => {
     const movie = {
         titulo: 'Teste Movie',
         sinopse: 'Movie summary',
@@ -56,5 +56,5 @@ test('POST /movies/ 200 Ok', async () => {
         .send(movie)
 
     expect(response.status).toEqual(201)
-    expect(response.body.length).toBeTruthy()
+    expect(response.body).toBeTruthy()
 })
