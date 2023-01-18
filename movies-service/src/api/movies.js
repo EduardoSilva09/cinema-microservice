@@ -1,7 +1,7 @@
 module.exports = (app, repository) => {
 
     app.get('/movies/premieres', async (req, res, next) => {
-        const movies = await repository.getMoviesPremieres()        
+        const movies = await repository.getMoviesPremieres()
         res.json(movies)
     })
 
@@ -16,6 +16,14 @@ module.exports = (app, repository) => {
     app.get('/movies', async (req, res, next) => {
         const movies = await repository.getAllMovies()
         res.json(movies)
+    })
+
+    app.post('/movies', async (req, res, next) => {
+        const { titulo, sinopse, imagem, categorias } = req.body
+        const duracao = parseInt(req.body.duracao)
+        const dataLancamento = new Date(req.body.dataLancamento)
+        const result = await repository.addMovie({ titulo, sinopse, duracao, dataLancamento, imagem, categorias })
+        res.status(201).json(result)
     })
 
 }
