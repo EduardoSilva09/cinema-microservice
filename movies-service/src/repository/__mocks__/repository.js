@@ -3,7 +3,7 @@ const movies = [{
     "titulo": "Os vingadores: Guerra Infinita",
     "sinopse": "Os herois mais poderosos da Marvel enfrentando o Thanos",
     "duracao": 120,
-    "dataLancamento": new Date('2023-01-01T00:00:00Z'),
+    "dataLancamento": new Date('2023-01-16T00:00:00Z'),
     "imagem": "https://www.luiztools.com.br/vingadores-eu.jpg",
     "categorias": [
         "Aventura",
@@ -14,7 +14,7 @@ const movies = [{
     "titulo": "Os Vingadores",
     "sinopse": "Os Heróis mais poderosos da Marvel enfrentando o Loki",
     "duracao": 100,
-    "dataLancamento": new Date('2023-01-01T00:00:00Z'),
+    "dataLancamento": new Date('2023-01-16T00:00:00Z'),
     "imagem": "https://www.luiztools.com.brvingadores.jpg",
     "categorias": [
         "Aventura",
@@ -36,6 +36,10 @@ async function getMovieById(id) {
 async function getMoviesPremieres() {
     movies[0].dataLancamento = new Date()
     return [movies[0]]
+}
+
+async function addMovie(movie) {
+    return movies[0]
 }
 
 module.exports = { getAllMovies, getMovieById, getMoviesPremieres }
