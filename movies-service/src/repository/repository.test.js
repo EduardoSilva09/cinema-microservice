@@ -29,3 +29,17 @@ test('getMoviesPremieres', async () => {
     expect(movies.length).toBeTruthy()
     expect(movies[0].dataLancamento.getTime()).toBeGreaterThanOrEqual(monthAgo.getTime())
 })
+
+test('addMovie', async () => {
+
+    const movie = {
+        titulo: 'Teste Movie',
+        sinopse: 'Movie summary',
+        duracao: 120, 
+        dataLancamento: new Date(), 
+        imagem: 'image.jpg', 
+        categorias:['Aventura']
+    }
+    const result = await repository.addMovie(movie)
+    expect(result).toBeTruthy()    
+})
