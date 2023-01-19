@@ -1,3 +1,5 @@
+const validationMiddleware = require('../middlewares/validationMovie')
+
 module.exports = (app, repository) => {
 
     app.get('/movies/premieres', async (req, res, next) => {
@@ -18,7 +20,7 @@ module.exports = (app, repository) => {
         res.json(movies)
     })
 
-    app.post('/movies', async (req, res, next) => {
+    app.post('/movies',validationMiddleware.validateMovie, async (req, res, next) => {
         const { titulo, sinopse, imagem, categorias } = req.body
         const duracao = parseInt(req.body.duracao)
         const dataLancamento = new Date(req.body.dataLancamento)

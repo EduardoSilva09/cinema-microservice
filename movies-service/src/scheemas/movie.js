@@ -15,7 +15,7 @@ const scheema = Joi.object({
         .required(),
     imagem: Joi.string()
         .required()
-        .pattern(/https?:\/\/.+\.(jpe?g|png|gif|svg)/gi),
+        .pattern(/https?:\/\/.+\.(jpe?g|png|gif|svg)/i),
     categorias: Joi.array()
         .items(Joi.string())
         .required()
