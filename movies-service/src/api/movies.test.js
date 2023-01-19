@@ -44,17 +44,22 @@ test('POST /movies/ 201 CREATED', async () => {
     const movie = {
         titulo: 'Teste Movie',
         sinopse: 'Movie summary',
-        duracao: 120, 
-        dataLancamento: new Date(), 
-        imagem: 'image.jpg', 
-        categorias:['Aventura']
+        duracao: 120,
+        dataLancamento: new Date(),
+        imagem: 'image.jpg',
+        categorias: ['Aventura']
     }
 
     const response = await request(app)
         .post('/movies/')
-        .set('Content-Type','application/json')
+        .set('Content-Type', 'application/json')
         .send(movie)
 
     expect(response.status).toEqual(201)
     expect(response.body).toBeTruthy()
+})
+
+test('DELETE /movies/:id 204 OK ', async () => {
+    const response = await request(app).delete('/movies/1')
+    expect(response.status).toEqual(204)
 })
