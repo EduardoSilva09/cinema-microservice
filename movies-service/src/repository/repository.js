@@ -22,7 +22,7 @@ async function getMoviesPremieres() {
 
 async function addMovie(movie) {
     const db = await database.connect()
-    const result = db.collection('movies').insertOne(movie)
+    const result = await db.collection('movies').insertOne(movie)
     movie._id = result.insertedId
     return movie
 }

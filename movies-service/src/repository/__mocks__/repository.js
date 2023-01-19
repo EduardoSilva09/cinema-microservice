@@ -42,4 +42,14 @@ async function addMovie(movie) {
     return movies[0]
 }
 
-module.exports = { getAllMovies, getMovieById, getMoviesPremieres, addMovie }
+async function deleteMovie(id) {
+    if(!id) throw new Error('Não foi possível excluir o registro!')
+    return true
+}
+
+module.exports = { 
+    getAllMovies, 
+    getMovieById, 
+    getMoviesPremieres, 
+    addMovie, 
+    deleteMovie }
