@@ -2,6 +2,7 @@ require('express-async-errors')
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
+const logger = require('../config/logger')
 let server = null
 
 async function start(api, repository) {
@@ -19,7 +20,7 @@ async function start(api, repository) {
     api(app, repository)
 
     app.use((error, req, res, next) => {
-        console.error(error);
+        logger.error(error.stack)
         res.sendStatus(500)
     })
 
