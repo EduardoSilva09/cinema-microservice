@@ -59,6 +59,17 @@ test('POST /movies/ 201 CREATED', async () => {
     expect(response.body).toBeTruthy()
 })
 
+test('POST /movies/ 422 UNPROCESSABLE ENTITY', async () => {
+    const movie = {  }
+
+    const response = await request(app)
+        .post('/movies/')
+        .set('Content-Type', 'application/json')
+        .send(movie)
+
+    expect(response.status).toEqual(422)
+})
+
 test('DELETE /movies/:id 204 OK ', async () => {
     const response = await request(app).delete('/movies/1')
     expect(response.status).toEqual(204)
