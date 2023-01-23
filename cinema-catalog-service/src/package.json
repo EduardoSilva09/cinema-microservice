@@ -4,6 +4,7 @@
   "description": "cinema catalog info.",
   "main": "index.js",
   "scripts": {
+    "start": "node -r dotenv/config index",
     "test": "jest"
   },
   "keywords": [

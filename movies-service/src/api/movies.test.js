@@ -46,7 +46,7 @@ test('POST /movies/ 201 CREATED', async () => {
         sinopse: 'Movie summary',
         duracao: 120,
         dataLancamento: new Date(),
-        imagem: 'image.jpg',
+        imagem: 'https://image.jpg',
         categorias: ['Aventura']
     }
 
