@@ -1,0 +1,18 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "description": "Provides a single edpoint to access the microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Api",
+    "gateway",
+    "nodeJS",
+    "JS",
+    "JavaScript"
+  ],
+  "author": "EduardoSilva09",
+  "license": "ISC"
+}
