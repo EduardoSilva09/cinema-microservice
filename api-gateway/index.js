@@ -22,7 +22,7 @@ const moviesServiceProxy = httpProxy(process.env.MOVIES_API, options)
 const catalogServiceProxy = httpProxy(process.env.CATALOG_API, options)
 
 app.post('/login', authController.doLogin)
-app.post('/logout', authController.doLogout)
+app.post('/logout', authController.validateToken, authController.doLogout)
 
 app.use('/movies', moviesServiceProxy)
 app.use('/cinemas', catalogServiceProxy)
