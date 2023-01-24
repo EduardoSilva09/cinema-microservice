@@ -14,5 +14,12 @@
     "JavaScript"
   ],
   "author": "EduardoSilva09",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-http-proxy": "^1.6.3",
+    "helmet": "^6.0.1",
+    "http": "^0.0.1-security"
+  }
 }
