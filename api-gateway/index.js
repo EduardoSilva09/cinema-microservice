@@ -10,11 +10,18 @@ app.use(morgan('dev'))
 app.use(helmet())
 app.use(cookieParser())
 
-const moviesServiceProxy = httpProxy(process.env.MOVIES_API)
-const catalogServiceProxy = httpProxy(process.env.CATALOG_API)
+const options = {
+    proxyReqPathResolver: (req) => {
+        return req.originalUrl
+    }
+}
+
+const moviesServiceProxy = httpProxy(process.env.MOVIES_API, options)
+const catalogServiceProxy = httpProxy(process.env.CATALOG_API, options)
 
 app.use('/movies', moviesServiceProxy)
-app.use(/cities|cinemas/i, catalogServiceProxy)
+app.use('/cinemas', catalogServiceProxy)
+app.use('/cities', catalogServiceProxy)
 
 app.listen(process.env.PORT, () => {
     console.log(`API Gateway started at ${process.env.PORT}`);
