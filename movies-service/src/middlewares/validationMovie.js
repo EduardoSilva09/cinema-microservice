@@ -1,5 +1,6 @@
 const scheema = require('../scheemas/movie')
 const jwt = require('jsonwebtoken')
+const ADMIN_PROFILE = 1
 
 function validateMovie(req, res, next) {
     const { error } = scheema.validate(req.body)
@@ -18,8 +19,9 @@ function validateToken(req, res, next) {
     token = token.replace('Bearer ', '')
 
     try {
-        const { userId } = jwt.verify(token, process.env.SECRET)
+        const { userId, profileId } = jwt.verify(token, process.env.SECRET)
         res.locals.userId = userId
+        res.locals.profileId = profileId
         next()
     } catch (error) {
         console.log(error)
@@ -27,4 +29,13 @@ function validateToken(req, res, next) {
     }
 }
 
-module.exports = { validateMovie, validateToken }
+function validateAdmin(req, res, next) {
+    const { profileId } = res.locals
+    if (profileId == ADMIN_PROFILE) {
+        next()
+    } else {
+        res.sendStatus(403)
+    }
+}
+
+module.exports = { validateMovie, validateToken, validateAdmin }

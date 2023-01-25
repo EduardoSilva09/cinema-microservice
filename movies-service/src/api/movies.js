@@ -1,4 +1,4 @@
-const { validateMovie, validateToken } = require('../middlewares/validationMovie')
+const { validateMovie, validateToken, validateAdmin } = require('../middlewares/validationMovie')
 
 module.exports = (app, repository) => {
 
@@ -20,7 +20,7 @@ module.exports = (app, repository) => {
         res.json(movies)
     })
 
-    app.post('/movies', validateToken, validateMovie, async (req, res, next) => {
+    app.post('/movies', validateToken, validateAdmin, validateMovie, async (req, res, next) => {
         const { titulo, sinopse, imagem, categorias } = req.body
         const duracao = parseInt(req.body.duracao)
         const dataLancamento = new Date(req.body.dataLancamento)
@@ -28,7 +28,7 @@ module.exports = (app, repository) => {
         res.status(201).json(result)
     })
 
-    app.delete('/movies/:id', validateToken, async (req, res) => {
+    app.delete('/movies/:id', validateToken, validateAdmin, async (req, res) => {
         const id = req.params.id
         const result = await repository.deleteMovie(id)
         res.sendStatus(204)
