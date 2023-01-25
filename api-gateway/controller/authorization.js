@@ -15,11 +15,11 @@ async function doLogin(req, res, next) {
 
 
 async function validateToken(req, res, next) {
-    const token = req.headers['authorization']
+    let token = req.headers['authorization']    
     if (!token)
         return res.sendStatus(401)
 
-    token = token.replace('Bearer', '')
+    token = token.replace('Bearer ', '')
 
     try {
         const { userId } = jwt.verify(token, process.env.SECRET)
@@ -32,7 +32,8 @@ async function validateToken(req, res, next) {
 }
 
 async function doLogout(req, res, next) {
-
+    const { userId } = res.locals
+    res.send(`Logout userId ${userId}`)
 }
 
 module.exports = { doLogin, doLogout, validateToken }
