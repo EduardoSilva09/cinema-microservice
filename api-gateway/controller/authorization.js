@@ -6,7 +6,7 @@ async function doLogin(req, res, next) {
         const token = jwt.sign(
             { userId: 1 },
             process.env.SECRET,
-            { expiresIn: process.env.EXPIRES }
+            { expiresIn: parseInt(process.env.EXPIRES) }
         )
         res.json({ token })
     } else
