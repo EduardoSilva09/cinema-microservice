@@ -1,23 +1,19 @@
 const jwt = require('jsonwebtoken')
+const repository = require('../repository/repository')
 
-async function doLogin(req, res, next) { 
+async function doLogin(req, res, next) {
     const { email, password } = req.body
-    if (email === 'eduardo@email.com' && password === '123456') { //ADMIN
+    try {
+        const user = await repository.getUser(email, password)
         const token = jwt.sign(
-            { userId: 1, profileId: 1 },
+            { userId: user._id, profileId: user.profileId },
             process.env.SECRET,
             { expiresIn: parseInt(process.env.EXPIRES) }
         )
         res.json({ token })
-    } else if (email === 'eduardo1@email.com' && password === '123456') {// VISIT
-        const token = jwt.sign(
-            { userId: 1, profileId: 2 },
-            process.env.SECRET,
-            { expiresIn: parseInt(process.env.EXPIRES) }
-        )
-        res.json({ token })
-    } else
+    } catch (error) {
         res.sendStatus(401)
+    }
 }
 
 async function validateToken(req, res, next) {
