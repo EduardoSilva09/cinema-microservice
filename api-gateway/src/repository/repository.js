@@ -13,7 +13,7 @@ async function getUser(email, password) {
 
 async function blackListToken(token) {
     const db = await database.connect()
-    return db.collection('blacklisttoken').InsertOne({ _id: token })
+    return db.collection('blacklisttoken').insertOne({ _id: token })
 }
 
 async function checkBlackListToken(token) {

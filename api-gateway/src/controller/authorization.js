@@ -47,8 +47,11 @@ async function validateToken(req, res, next) {
 }
 
 async function doLogout(req, res, next) {
-    const { userId } = res.locals    
-    res.send(`Logout userId ${userId}`)
+    let token = req.headers['authorization']
+    token = token.replace('Bearer ', '')
+    
+    await repository.blackListToken(token)
+    res.sendStatus(200)
 }
 
 module.exports = { doLogin, doLogout, validateToken, validateBlackList }
