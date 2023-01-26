@@ -16,6 +16,19 @@ async function doLogin(req, res, next) {
     }
 }
 
+async function validateBlackList(req, res, next) {
+    let token = req.headers['authorization']
+    if (!token) return next()
+
+    token = token.replace('Bearer ', '')
+    const isBlackListed = repository.checkBlackListToken(token)
+
+    if (isBlackListed)
+        return res.sendStatus(401)
+    else
+        next()
+}
+
 async function validateToken(req, res, next) {
     let token = req.headers['authorization']
     if (!token)
@@ -34,8 +47,8 @@ async function validateToken(req, res, next) {
 }
 
 async function doLogout(req, res, next) {
-    const { userId } = res.locals
+    const { userId } = res.locals    
     res.send(`Logout userId ${userId}`)
 }
 
-module.exports = { doLogin, doLogout, validateToken }
+module.exports = { doLogin, doLogout, validateToken, validateBlackList }
