@@ -23,6 +23,7 @@
     "helmet": "^6.0.1",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^4.13.0",
     "morgan": "^1.10.0"
   }
 }
