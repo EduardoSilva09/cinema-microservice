@@ -21,7 +21,7 @@ async function validateBlackList(req, res, next) {
     if (!token) return next()
 
     token = token.replace('Bearer ', '')
-    const isBlackListed = repository.checkBlackListToken(token)
+    const isBlackListed = await repository.checkBlackListToken(token)
 
     if (isBlackListed)
         return res.sendStatus(401)
