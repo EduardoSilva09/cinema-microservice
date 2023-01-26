@@ -7,8 +7,20 @@ async function getUser(email, password) {
     if (!user) throw new Error('Wrong user and/or password')
     const isValid = bcrypt.compareSync(password, user.password)
     if (!isValid) throw new Error('Wrong user and/or password')
-    
+
     return user
 }
 
-module.exports = { getUser }
+async function blackListToken(token) {
+    const db = await database.connect()
+    return db.collection('blacklisttoken').InsertOne({ _id: token })
+}
+
+async function checkBlackListToken(token) {
+    const db = await database.connect()
+    const qtd = await db.collection('blacklisttoken').countDocuments({ _id: token })
+    return qtd > 0
+}
+
+
+module.exports = { getUser, blackListToken, checkBlackListToken }
