@@ -16,6 +16,16 @@ async function doLogin(req, res, next) {
     }
 }
 
+async function validateLoginScheema(req, res, next) {
+    const scheema = require('../scheemas/login')
+    const { error } = scheema.validate(req.body)
+    if (error) {
+        const { details } = error
+        return res.status(422).json(details.map(d => d.message))
+    }
+    next()
+}
+
 async function validateBlackList(req, res, next) {
     let token = req.headers['authorization']
     if (!token) return next()
@@ -49,9 +59,9 @@ async function validateToken(req, res, next) {
 async function doLogout(req, res, next) {
     let token = req.headers['authorization']
     token = token.replace('Bearer ', '')
-    
+
     await repository.blackListToken(token)
     res.sendStatus(200)
 }
 
-module.exports = { doLogin, doLogout, validateToken, validateBlackList }
+module.exports = { doLogin, doLogout, validateToken, validateBlackList, validateLoginScheema }
