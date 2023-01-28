@@ -44,6 +44,14 @@ test('GET /movies 401 UNAUTHORIZED', async () => {
     expect(response.status).toEqual(401)
 })
 
+test('GET /movies 401 UNAUTHORIZED (Invalid Token)', async () => {
+    const response = await request(app)
+        .get('/movies')
+        .set('authorization', `Bearer InvalidToken`)
+
+    expect(response.status).toEqual(401)
+})
+
 test('GET /movies/:id 200 Ok', async () => {
     const testMovieId = '1';
     const response = await request(app)
