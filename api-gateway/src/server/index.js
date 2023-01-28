@@ -30,8 +30,8 @@ app.use('/movies', moviesServiceProxy)
 app.use('/cinemas', catalogServiceProxy)
 app.use('/cities', catalogServiceProxy)
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
     console.log(`API Gateway started at ${process.env.PORT}`);
 })
 
-module.exports = app
+module.exports = server
