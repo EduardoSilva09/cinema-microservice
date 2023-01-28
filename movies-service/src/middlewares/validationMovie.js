@@ -3,9 +3,6 @@ const jwt = require('jsonwebtoken')
 const ADMIN_PROFILE = 1
 
 function validateMovie(req, res, next) {
-    if (!req.body)
-        return res.sendStatus(422)
-
     const { error } = scheema.validate(req.body)
     if (error) {
         const { details } = error
